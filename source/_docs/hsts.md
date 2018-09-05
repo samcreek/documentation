@@ -3,14 +3,14 @@ title: Require HTTPS with the HSTS Header
 description: Enforce HTTPS communications on supported browsers using the HTTP Strict Transport Security header.
 tags: [security]
 ---
-After you have required HTTPS for all pages by adding the [necessary redirect](/docs/domains/#redirect-to-https-and-the-primary-domain), set the HTTP Strict Transport Security (HSTS) header to standardize all client connections on HTTPS and prevent use of HTTP.
-
-Not only does this header help you get an A+ SSL rating from [SSL Labs](https://www.ssllabs.com/ssltest/){.external}, it will help protect your website against protocol downgrade attacks and cookie hijacking.
+If you configure your site to [automatically redirect requests to HTTPS whenever necessary](/docs/domains/#redirect-to-https-and-the-primary-domain), Pantheon will automatically set the HTTP Strict Transport Security (HSTS) header to standardize all client connections on HTTPS and prevent use of HTTP. Either a short (5 minute) or long (366 day) duration may be selected. Using the long duration setting will help you get an A+ SSL rating from [SSL Labs](https://www.ssllabs.com/ssltest/){.external}, and will also help protect your website against protocol downgrade attacks and cookie hijacking.
 
 <div class="alert alert-info" role="alert">
   <h4 class="info">Note</h4>
   <p markdown="1">Before adding HSTS to your site, you should review and understand the configuration options that are available. A HSTS header that is configured incompletely or not securely enough diminishes the security protection that HSTS provides.</p>
 </div>
+
+Adding HSTS to your site may be done automatically via the [`scheme` setting in your pantheon.yml file](https://pantheon.io/docs/pantheon-yml/). If you need more control than offered by the built-in feature, then you may manually add HSTS to your site by using a module or plugin, as described below.
 
 ## Deploy and Configure a HSTS Header by Module or Plugin
 The HTTP Strict-Transport-Security response header (often abbreviated as **HSTS**) is a website security feature that tells browsers to only communicate using HTTPS, instead of HTTP.
