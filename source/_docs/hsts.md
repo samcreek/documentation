@@ -3,13 +3,16 @@ title: Require HTTPS with the HSTS Header
 description: Enforce HTTPS communications on supported browsers using the HTTP Strict Transport Security header.
 tags: [security]
 ---
-If you configure your site to [automatically redirect requests to HTTPS whenever necessary](/docs/domains/#redirect-to-https-and-the-primary-domain), Pantheon will automatically set the HTTP Strict Transport Security (HSTS) header to standardize all client connections on HTTPS and prevent use of HTTP. Either a short (5 minute) or long (366 day) duration may be selected. Using the long duration setting will help you get an A+ SSL rating from [SSL Labs](https://www.ssllabs.com/ssltest/){.external}, and will also help protect your website against protocol downgrade attacks and cookie hijacking.
+
+Pantheon can now automatically redirect all traffic to HTTPS, and set the HTTP Strict Transport Security (HSTS) header to standardize all client connections on HTTPS and prevent use of HTTP. This security feature can increase your SSL rating from [SSL Labs](https://www.ssllabs.com/ssltest/){.external}, and will also help protect your website against protocol downgrade attacks and cookie hijacking.
+
+## Configure HSTS Through the `pantheon.yml` File
+
+{% include("content/hsts.html") %}
 
 ## Deploy and Configure a HSTS Header by Module or Plugin
-The HTTP Strict-Transport-Security response header (often abbreviated as **HSTS**) is a website security feature that tells browsers to only communicate using HTTPS, instead of HTTP.
-
 <div class="alert alert-info">
-<h4 class="info">Note</h4><p markdown="1">Manual configuration of the HSTS header using modules, as described in this section, should rarely be necessary. Instead, you should set the [`scheme` setting in your pantheon.yml file](https://pantheon.io/docs/pantheon-yml/), which will apply these headers automatically. If for some reason you need more flexibility than provided by the built-in feature, then you may use the module or plugin below to configure the exact values you need.
+<h4 class="info">Note</h4><p markdown="1">Manual configuration of the HSTS header using modules, as described in this section, should rarely be necessary. Instead, you should set the `scheme` setting in your `pantheon.yml` file as described above, which will apply these headers automatically. If for some reason you need more flexibility than provided by the built-in feature, then you may use the module or plugin below to configure the exact values you need.
 </p>
 </div>
 
@@ -114,7 +117,7 @@ strict-transport-security: max-age=15552000
 
 </div>
 
-## HSTS Header Configuration Attributes
+### HSTS Header Configuration Attributes
 Once you've installed the module or plugin you plan to use, you should immediately configure the `strict-transport-security` header attributes as appropriate for your site. There are three attributes you should configure for the `strict-transport-security` header:
 
 <dl>

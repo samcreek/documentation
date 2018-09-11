@@ -117,28 +117,9 @@ At this point, all visitors to the site should be able to securely access all pa
 
 ## Redirect to HTTPS and the primary domain
 
-As part of best security practices, we suggest you [Require HTTPS with the HSTS Header](/docs/hsts), as well as a redirect. Add a `scheme` directive to your pantheon.yml to control how your site should handle https redirects and the HSTS header.
+As part of best security practices, we suggest you [Require HTTPS with the HSTS Header](/docs/hsts/), as well as redirect all HTTP traffic to HTTPS.
 
-- No redirect and no HSTS header (default):
-```
-scheme: any
-```
-- HTTPS redirect with a short HSTS duration (5 minutes):
-```
-scheme: https
-```
-- HTTPS redirect with a long HSTS duration (366 days, for an A+ SSL Labs rating):
-```
-scheme: hsts
-```
-
-Pantheon will send the following header based on the setting of _scheme_:
-
-- any: _None_
-- https: `Strict-Transport-Security: max-age=300`
-- hsts: `Strict-Transport-Security: max-age=31622400; includeSubDomains; preload`
-
-Configure your pantheon.yml file as explained in the [Pantheon YAML Configuration Files](https://pantheon.io/docs/pantheon-yml/) documentation.
+{% include("content/hsts.html") %}
 
 If you need more control over your redirect and/or HSTS header, then you can manually configure redirects to the primary domain with HTTPS in `settings.php` or `wp-config.php` if a visitor arrives either (1) on a different domain or (2) without HTTPS.
 
